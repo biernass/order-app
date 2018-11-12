@@ -1,11 +1,13 @@
 package pl.mb.soft.orderapp.converters;
 
+import org.springframework.stereotype.Component;
 import pl.mb.soft.orderapp.dto.CustomerDto;
 import pl.mb.soft.orderapp.entities.Customer;
 import pl.mb.soft.orderapp.entities.CustomerType;
 
 import java.util.function.Function;
 
+@Component
 public class CustomerConverter implements Function<CustomerDto, Customer> {
 
     @Override
