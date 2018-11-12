@@ -1,7 +1,9 @@
 package pl.mb.soft.orderapp.service;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import pl.mb.soft.orderapp.converters.CustomerConverter;
 import pl.mb.soft.orderapp.dto.CustomerDto;
 import pl.mb.soft.orderapp.entities.Customer;
@@ -25,9 +27,11 @@ public class CustomerServiceImpl implements CustomerService {
     public void registerCustomer(CustomerDto customerDto) {
         Customer customer = customerConverter.apply(customerDto);
         customer.setActive(false);
-//        String token = UUID.randomUUID().toString();
-//        customer.setToken(token);
-        customer.setPassword(customerDto.getPassword());
+        String token = UUID.randomUUID().toString();
+        customer.setToken(token);
+        String encryptedPassword = DigestUtils.md5Hex(customerDto.getPassword()).toUpperCase();
+        customer.setPassword(encryptedPassword);
         customerRepository.save(customer);
+
     }
 }

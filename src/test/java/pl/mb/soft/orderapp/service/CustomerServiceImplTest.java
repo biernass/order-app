@@ -37,6 +37,7 @@ public class CustomerServiceImplTest {
 
         Optional<Customer> customerOptional = customerRepository.findCustomerByLogin("mb");
         assertEquals(true, customerOptional.isPresent());
+        assertEquals("47BCE5C74F589F4867DBD57E9CA9F808", customerOptional.get().getPassword());
 
 
     }

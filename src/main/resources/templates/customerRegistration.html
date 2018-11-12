@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="#" th:action="@{/customer/register}" th:object="${customer}" method="post">
+    <table border="1">
+        <tr>
+            <td><label th:text="#{customer.id.label.text}"/><span th:text="*{id}"/> </td>
+            <td><input type="hidden" th:field="*{id}" th:value="*{id}"/></td>
+        </tr>
+        <tr>
+            <td><label th:text="#{customer.firstName.label.text}"/></td>
+            <td><input type="text" th:field="*{firstName}"/></td>
+        </tr>
+        <tr>
+            <td><label th:text="#{customer.lastName.label.text}"/></td>
+            <td><input type="text" th:field="*{lastName}"/></td>
+        </tr>
+        <tr>
+            <td><label th:text="#{customer.email.label.text}"/></td>
+            <td><input type="email" th:field="*{email}"/></td>
+        </tr>
+        <tr>
+            <td><label th:text="#{customer.customerType.label.text}"/></td>
+            <td>
+                <select th:field="*{customerType}">
+                    <option th:each="type : ${customerTypes}" th:value="${type}" th:text="${type}"/>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label th:text="#{customer.login.label.text}"/></td>
+            <td><input type="text" th:field="*{login}"/></td>
+        </tr>
+        <tr>
+            <td><label th:text="#{customer.password.label.text}"/></td>
+            <td><input type="password" th:field="*{password}"/></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
